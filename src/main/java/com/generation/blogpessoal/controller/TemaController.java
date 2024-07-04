@@ -49,6 +49,12 @@ public class TemaController {
 				.findAllByDescricaoContainingIgnoreCase(descricao));
 	}
 	
+	@PostMapping
+	public ResponseEntity<Tema> post(@Valid @RequestBody Tema tema){
+		return ResponseEntity.status(HttpStatus.CREATED)
+				.body(temaRepository.save(tema));
+	}
+	
 	@PutMapping
 	public ResponseEntity<Tema> put(@Valid @RequestBody Tema tema){
 		return temaRepository.findById(tema.getId())
