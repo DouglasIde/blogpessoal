@@ -83,11 +83,11 @@ public class Usuario {
 	}
 
 	public List<Post> getPostagem() {
-		return postagem;
+		return post;
 	}
 
 	public void setPostagem(List<Post> postagem) {
-		this.postagem = postagem;
+		this.post = postagem;
 	}
 	
 	
