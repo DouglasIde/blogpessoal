@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import java.security.Key;
 
@@ -16,7 +17,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
-
+@Component
 public class JwtService {
 	public static final String SECRET = "9F2U03JF29DJ230D2JDWO0ED230IJD2MI0DJ20DI";
 	
@@ -48,7 +49,7 @@ public class JwtService {
 		return extractExpiration(token).before(new Date());
 	}
 	
-	private Boolean validateToken(String token, UserDetails userDetails) {
+	public Boolean validateToken(String token, UserDetails userDetails) {
 		final String username = extractUsername(token);
 		return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
 	}
