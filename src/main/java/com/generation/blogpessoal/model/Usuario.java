@@ -46,8 +46,7 @@ public class Usuario {
 	public Usuario(Long id, @NotNull(message = "O Atributo Nome é OBRIGATÓRIO!") String nome,
 			@NotNull(message = "O Atributo Usuário é OBRIGATÓRIO!") @Size(min = 8, message = "A Senha deve ter no mínimo 8 caracteres") String usuario,
 			@NotBlank(message = "O Atributo Senha é OBRIGATÓRIO!") @Size(min = 8, message = "A Senha deve ter no mínimo 8 caracteres") String senha,
-			@Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres") String foto,
-			List<Post> post) {
+			@Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres") String foto) {
 		super();
 		this.id = id;
 		this.nome = nome;
