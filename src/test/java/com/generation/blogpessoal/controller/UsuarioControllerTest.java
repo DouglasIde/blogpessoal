@@ -2,6 +2,8 @@ package com.generation.blogpessoal.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -65,5 +67,23 @@ public class UsuarioControllerTest {
 				.exchange("/usuarios/cadastrar", HttpMethod.POST, corpoRequisicao, Usuario.class);
 		
 		assertEquals(HttpStatus.BAD_REQUEST, corpoResposta.getStatusCode());
+	}
+	
+	@Test
+	@DisplayName("Atualizar um Usuário")
+	public void deveAtualizarUmUsuario() {
+		Optional<Usuario> usuarioCadastrado = usuarioService.cadastrarUsuario(new Usuario(0L,
+				"Ana Flavia", "ana_flavia@gmail.com", "anaflavia123", "-"));
+		
+		Usuario usuarioUpdate = new Usuario(usuarioCadastrado.get().getId(),
+				"Ana Flavia Campos", "ana_campos@gmail.com", "anaflavia123", "-");
+		
+		HttpEntity<Usuario> corpoRequisicao = new HttpEntity<Usuario>(usuarioUpdate);
+		
+		ResponseEntity<Usuario> corpoResposta = testRestTemplate
+				.withBasicAuth("root@root.com", "rootroot")
+				.exchange("/usuarios/atualizar", HttpMethod.PUT, corpoRequisicao, Usuario.class);
+		
+		assertEquals(HttpStatus.OK, corpoResposta.getStatusCode());
 	}
 }
