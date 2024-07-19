@@ -100,6 +100,6 @@ public class UsuarioControllerTest {
 				.withBasicAuth("root@root.com", "rootroot")
 				.exchange("/usuarios/all", HttpMethod.GET, null, String.class);
 		
-		assertEquals(HttpStatus.OK, reposta.getStatusCode());
+		assertEquals(HttpStatus.OK, resposta.getStatusCode());
 	}
 }
